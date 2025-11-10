@@ -1,0 +1,282 @@
+\documentclass[11pt, english]{article}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{/home/cvalencia/Dropbox/Phd_WUSTL/config/normalConfigPaperV2}
+\usepackage{/home/cvalencia/Dropbox/Phd_WUSTL/config/math}
+% \usepackage{../../../../config/jlcode-master/jlcode}
+
+\usetikzlibrary{positioning, arrows.meta, calc, fit}
+\newcommand{\tab}{\hspace*{8em}}
+
+ % \addbibresource{informality.bib}
+
+\title{Endogenous entrepreneurship and financial frictions} % \thanks{}
+\author{ Cristián Valencia$^1$  }
+\date{$^1$Washington University in St.\ Louis\\[1em]
+    \today
+}
+
+\onehalfspacing
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}%
+
+
+
+\begin{document}
+\maketitle
+% ------------------------------------------ %
+%                 START HERE                  %
+% ------------------------------------------ %
+
+\section{Motivation/Question}
+
+\section{The Model}
+
+\begin{itemize}
+    \item There is a continuum of individuals who differ in their wealth $a$ and entrepreneurial ability $z$.
+    \item Each period, every individual chooses to be a Worker or an Entrepreneur.
+    \item Entrepreneurs are subject to a collateral constraint.
+    \item Entrepreneurial ability $z$ is drawn from a Pareto distribution with pdf $\mu\left(z\right)=\eta z^{-\eta-1},z\ge1$. Entrepreneurial ability is persistent: each period a new $z$ is drawn with a probability $\gamma$.
+    \item Financial intermediaries collect deposits and rent out capital to entrepreneurs at rate R, by no arbitrage then $R=r+\delta$ with $r$ the deposit rate.
+    \item There is a representative public firm.
+    \item The government taxes entrepreneurial profits and revenues at rates $\tau^{\pi}$ and $\tau^{y}$ a and rebates all the receipts with lump-sum payments $T_{t}$.
+\end{itemize}
+
+\subsection{Individuals' problem}
+
+Individuals have CRRA preferences over consumption 
+$$
+\max\mathbb{E}_{0}\sum_{t=0}^{\infty}\beta^{t}\frac{c_{t}^{1-\sigma}-1}{1-\sigma},
+$$
+with inverse elasticity of intertemporal substitution $\sigma$.
+
+The budget constraint is 
+$$
+c_{t}+a_{t+1}\le\max\left\{ w_{t},\pi\left(z_{t},a_{t}\right)\right\} +\left(1+r_{t}\right)a_{t}+T_{t},
+$$
+where the $\max$ operator encompasses the binary occupation choice.
+
+Profits from operating the production technology are given by
+\begin{align*}
+\pi\left(z_{t},a_{t}\right)	&=	\max_{l_{t},k_{t}}\left\{ \left(1-\tau_{t}^{\pi}\right)\left[\left(1-\tau_{t}^{y}\right)z_{t}Z_{t}\left(k_{t}^{\alpha}l_{t}^{1-\alpha}\right)^{1-\nu}-w_{t}l_{t}-\left(\delta+r_{t}\right)k_{t}\right]\right\}, \\
+\text{s.t.}		\quad &k_{t}\le\lambda a_{t}.
+\end{align*}
+
+Hence individuals at productivity $z_{t}$ choose to become entrepreneurs if their wealth exceeds the threshold value $\bar{a}\left(z_{t}\right)$ that solves
+$$
+w_{t}=\pi\left(z_{t},\bar{a}\left(z_{t}\right)\right).
+$$
+
+The technology operated by individual entrepreneurs features decreasing returns to scale
+$$
+y_{t}=f\left(z,k,l\right)=zZ\left(k^{\alpha}l^{1-\alpha}\right)^{1-\nu},
+$$
+with $Z$ aggregate TFP shocks that varies with time.
+
+
+\subsection{Public firm}
+
+A representative public firm operates the CRS technology
+$$
+F\left(K_{ct},L_{ct}\right)=Z_{t}Z_{ct}K_{ct}^{\alpha}L_{ct}^{1-\alpha}.
+$$
+
+From FOCs:
+\begin{align*}
+r_{t}	&=	F_{K}\left(K_{ct},L_{ct}\right)-\delta =	\alpha Z_{t}Z_{ct}\left(\frac{K_{ct}}{L_{ct}}\right)^{\alpha-1}-\delta, \\
+    w_{t}	&=	F_{L}\left(Z_{ct},K_{ct},L_{ct}\right) =	\left(1-\alpha\right)Z_{t}Z_{ct}\left(\frac{K_{ct}}{L_{ct}}\right)^{\alpha},
+\end{align*}
+and so capital-labor ratio
+$$
+\frac{K_{ct}}{L_{ct}} =	\left(\frac{\alpha Z_{t}Z_{ct}}{r_{t}+\delta}\right)^{\frac{1}{1-\alpha}}.
+$$
+
+\subsection{Equilibrium}
+
+Given an initial distribution $D_{0}\left(z,a\right)$, a competitive equilibrium is allocations 
+$$\{ c_{t}\left(z_{t},a_{t}\right),a_{t+1}\left(z_{t},a_{t}\right),l_{t}\left(z_{t},a_{t}\right),k_{t}\left(z_{t},a_{t}\right)\}$$ 
+, distributions $D_{t}\left(z_{t},a_{t}\right)$ , and prices $\{ w_{t}$,$r_{t}\}$  such that
+
+
+\begin{enumerate}
+    \item Given prices, the policy functions solve the individuals' problem.
+    \item Labor market clears:
+$$
+L_{ct}+\int_{E}l_{t}\left(z,a\right)dD_{t}\left(a,z\right)-\int_{W}dD_{t}\left(a,z\right)=0.
+$$
+    \item Asset market clears:
+$$
+K_{ct}+\int_{E}k_{t}\left(z,a\right)dD_{t}\left(a,z\right)-\int aD_{t}\left(a,z\right)=0.
+$$
+
+    \item Goods market clears (by Walras's Law).
+    \item The government's budget is balanced
+$$
+T_{t}=\int_{E}\left[\left(\tau_{t}^{\pi}+\tau_{t}-\tau_{t}^{\pi}\tau_{t}\right)y_{t}\left(z,k,l\right)-\tau_{t}^{\pi}\left(w_{t}l_{t}\left(z,a\right)+\left(\delta+r_{t}\right)k_{t}\left(z,a\right)\right)\right]dD_{t}\left(a,z\right).
+$$
+    \item The joint distribution evolves according to
+\begin{align*}
+D_{t+1}^{E}\left(a_{t+1},z_{t+1}\right)	&=	\gamma D_{t}^{E}\left(a_{t+1}^{-1}\left(z_{t},a_{t}\right),z_{t}\right)+\left(1-\gamma\right)\int_{z}D_{t}^{E}\left(a_{t+1}^{-1}\left(z_{t},a_{t}\right),z_{t}\right),\\
+	&=	\left[\gamma I+\left(1-\gamma\right)\Pi\right]D_{t}^{E}\left(a_{t+1}^{-1}\left(z_{t},a_{t}\right),z_{t}\right),
+\end{align*} where $\Pi=\left[\begin{array}{c}
+\pi_{z}\\
+\pi_{z}\\
+\ldots
+\end{array}\right]$.
+\end{enumerate}
+
+
+\section{Solving the model}
+
+
+\subsection{Solving for entrepreneurial profits}
+
+The indirect profit function is
+\begin{align*}
+\pi\left(z_{t},a_{t}\right)	&=	\max_{l_{t},k_{t}}\left\{ \left(1-\tau_{t}^{\pi}\right)\left[\left(1-\tau_{t}^{y}\right)z_{t}Z_{t}\left(k_{t}^{\alpha}l_{t}^{1-\alpha}\right)^{1-\nu}-w_{t}l_{t}-\left(\delta+r_{t}\right)k_{t}\right]\right\}, \\
+\text{s.t.}		\quad &k_{t}\le\lambda a_{t}.
+\end{align*}
+
+If the collateral constraint does not bind, profit maximization implies
+$$
+k^{u}\left(z_{t}\right)	=	\left[\left(1-\tau_{t}^{y}\right)z_{t}Z_{t}\right]^{\frac{1}{\nu}}\left(\frac{\alpha\left(1-\nu\right)}{r_{t}+\delta}\right)^{\frac{1-\left(1-\alpha\right)\left(1-\nu\right)}{\nu}}\left(\frac{\left(1-\alpha\right)\left(1-\nu\right)}{w_{t}}\right)^{\frac{\left(1-\alpha\right)\left(1-\nu\right)}{\nu}}.
+$$
+
+If the collateral constraint binds (with $\theta$ the Lagrange multiplier)
+$$
+k^{c}\left(a_{t}\right)	=	\lambda a_{t}.
+$$
+
+Hence the capital policy function is
+$$
+k\left(z_{t},a_{t}\right)=\min\left\{ k^{c}\left(a_{t}\right),k^{u}\left(z_{t}\right)\right\} .
+$$
+and the labor policy function is 
+$$
+l\left(z_{t},a_{t}\right)=\left(\frac{\left(1-\alpha\right)\left(1-\nu\right)\left(1-\tau_{t}^{y}\right)z_{t}Z_{t}}{w_{t}}\right)^{\frac{1}{1-\left(1-\alpha\right)\left(1-\nu\right)}}k\left(z_{t},a_{t}\right)^{\frac{\alpha\left(1-\nu\right)}{1-\left(1-\alpha\right)\left(1-\nu\right)}}.
+$$
+and the indirect profit function is given by 
+$$
+\pi\left(z_{t},a_{t}\right)=\left(1-\tau_{t}^{\pi}\right)\left[\left(1-\tau_{t}^{y}\right)z_{t}Z_{t}\left(k\left(z_{t},a_{t}\right)^{\alpha}l\left(z_{t},a_{t}\right)^{1-\alpha}\right)^{1-\nu}-w_{t}l\left(z_{t},a_{t}\right)-\left(\delta+r_{t}\right)k\left(z_{t},a_{t}\right)\right].
+$$
+Note that the tax on profits $\tau_{t}^{\pi}$ does not affect the optimal policies, while the tax on revenue $\tau_{t}^{y}$ does.
+
+
+
+\subsection{Solving the individuals' problem}
+
+We can write the Bellman as
+\begin{align*}
+v_{t}\left(a_{t},z_{t}\right)	&=	\max_{c_{t},a_{t+1}}\left\{ u\left(c_{t}\right)+\beta\left[\gamma v_{t+1}\left(a_{t+1},z_{t}\right)+\left(1-\gamma\right)\int v_{t+1}\left(a_{t+1},z_{t+1}\right)\mu\left(z_{t+1}\right)dz_{t+1}\right]\right\}, \\
+\text{s.t.}	\quad &	c_{t}+a_{t+1}=M\left(a_{t+1},z_{t}\right)+\left(1+r_{t}\right)a_{t}+T_{t},
+\end{align*}
+where $M\left(a_{t+1},z_{t}\right)=\max\left\{ w_{t},\pi\left(z_{t},a_{t}\right)\right\}$ and the Euler equation is 
+\begin{align*}
+u'\left(c_{t}\left(z_{t},a_{t}\right)\right)=&\beta\bigg[\gamma\left(1+r_{t+1}^{eff}\left(z_{t},a_{t+1},d_{t+1}\right)\right)u'\left(c_{t+1}\left(z_{t},a_{t+1}\right)\right),\\
+&\quad+\left(1-\gamma\right)\int\left(1+r_{t+1}^{eff}\left(z_{t+1},a_{t+1},d_{t+1}\right)\right)u'\left(c_{t+1}\left(z_{t+1},a_{t+1}\right)\right)\mu\left(z_{t+1}\right)dz_{t+1}\bigg],
+\end{align*}
+where the net effective return is defined as 
+$$
+r_{t}^{eff}\left(z_{t},a_{t}\right)=\begin{cases}
+r_{t} & \text{if Worker},\\
+r_{t}+\frac{\partial\pi\left(z_{t},a_{t}\right)}{\partial a_{t}} & \text{if Entrepreneur},
+\end{cases} 
+$$
+where
+$$\frac{\partial\pi\left(z_{t},a_{t}\right)}{\partial a_{t}}=\begin{cases}
+\frac{\partial\pi^{const}\left(z_{t},a_{t}\right)}{\partial a_{t}} & \text{if constrained Entrepreneur},\\
+0 & \text{if unconstrained Entrepreneur}.
+\end{cases}
+$$
+
+\subsubsection{Obtaining policies}
+Inputs: prices $\left\{ w_{t},r_{t}\right\}$ , government policy $\left\{ \tau_{t}^{\pi},T_{t}\right\}$  and consumption on next period's asset grid $c_{t+1}\left(z_{t+1},a_{t+1}\right)$.
+
+Calculate income $M\left(a_{t+1},z_{t}\right)$ on the grids for $a$ and $z$ from the indirect profit function.
+
+Calculate next period's cash-on-hand on the grids for $a$ and $z$ 
+$$
+coh\left(z_{t+1},a_{t+1}\right)	=	M\left(z_{t+1},a_{t+1}\right)+\left(1+r_{t}\right)a_{t+1}+T_{t}.
+$$
+
+Compute the RHS of the Euler equation 
+\begin{align*}
+RHS\left(a_{t+1},z_{t}\right)	&=	\beta\bigg[\gamma\bigg\{\left(1+r_{t+1}^{eff}\left(z_{t},a_{t+1}\right)\right)u'\left(c_{t+1}\left(z_{t},a_{t+1}\right)\right)\\
+		&\quad+\left(1-\gamma\right)\int\bigg\{\left(1+r_{t+1}^{eff}\left(z_{t+1},a_{t+1}\right)\right)u'\left(c_{t+1}\left(z_{t+1},a_{t+1}\right)\right)\bigg\}\mu\left(z_{t+1}\right)dz_{t+1}\bigg],
+\end{align*}
+and invert to get current consumption 
+$$
+c\left(a_{t+1},z_{t}\right)=u^{-1}\left(RHS\left(a_{t+1},z_{t}\right)\right).
+$$
+
+Calculate the asset policy functions with the mapping from assets today 
+$$
+a_{t}=\frac{c_{t}\left(a_{t+1},z_{t}\right)+a_{t+1}-M\left(a_{t+1},z_{t}\right)-T_{t}}{1+r_{t}} ,
+$$
+to assets tomorrow $a_{t+1}$ that we can invert by interpolation to get the policy function $a_{t+1}\left(a_{t},z_{t}\right)$.
+
+Enforce the borrowing constraint, ie enforce $a_{t+1}\left(a_{t},z_{t}\right)\ge0$.
+
+Compute the consumption policy functions as
+$$
+c_{t}\left(a_{t},z_{t}\right)=coh\left(z_{t},a_{t}\right)-a_{t+1}\left(a_{t},z_{t}\right),
+$$
+and if $c_{t}\left(a_{t},z_{t}\right)<0$, set $c_{t}\left(a_{t},z_{t}\right)=0$ and $a_{t+1}\left(a_{t},z_{t}\right)=coh\left(z_{t},a_{t}\right)$.
+
+
+\subsubsection{Obtaining the distribution}
+
+Given a distribution at $t$, the distribution at $t+1$ is obtained as 
+$$
+D_{t+1}\left(a_{t+1},z_{t+1}\right)=\gamma D_{t}\left(a_{t+1}^{-1}\left(z_{t},a_{t};w,r\right),z_{t}\right)+\left(1-\gamma\right)\sum_{\hat{z}\in\mathcal{Z}}\mu\left(\hat{z}\right)D_{t}\left(a_{t+1}^{-1}\left(\hat{z},a_{t};w,r\right),\hat{z}\right),
+$$
+and the stationary distribution is obtained by iterating until convergence.
+
+In matrix form, we stack the vector $\mu\left(z\right)$ in a matrix $\Pi$ and we can do
+$$
+D_{t+1}\left(a_{t+1},z_{t+1}\right)=\left(\gamma I+\left(1-\gamma\right)\Pi\right)D_{t}\left(a_{t+1}^{-1}\left(z_{t},a_{t};w,r\right),z_{t+1}\right).
+$$
+
+\section{Algorithm to solve for the general equilibrium}
+
+\begin{enumerate}
+    \item Fix grid for states $a$ and $z$.
+    \item Set a guess for the interest rate $r$.
+    \item Given $r$, use the public sector to find $w$.
+    \item Given prices $(r,w)$, and a guess for $T$, find the individuls' policy functions.
+    \item Given policies, find the stationary distribution.
+    \item Compute the implied transfers $T$ and if not close, use the updated $T$ and go back to step 4.
+    \item Aggregate policies and distributions to find assets and savings of the private sector and back out $K_{c}$ from asset market clearing condition.
+    \item Compute error in labor market and update $r$ until convergence.
+\end{enumerate}
+
+\begin{algorithm}
+\caption{Solve General Equilibrium}
+\begin{algorithmic}[1]
+\State Fix grid for states $a$ and $z$
+\State Initialize guess for interest rate $r$
+\While{not converged on $r$}
+    \State Use public sector to compute $w$ given $r$
+    \State Initialize guess for $T$
+    \While{not converged on $T$}
+        \State Compute individuals' policy functions given prices $(r, w)$ and $T$
+        \State Compute stationary distribution given policies
+        \State Compute implied transfers $T_\text{new}$
+        \If{$|T_\text{new} - T| >$ tolerance}
+            \State Set $T = T_\text{new}$  \Comment{or some update rule}
+        \Else
+            \State Converged on $T$
+        \EndIf
+    \EndWhile
+    \State Aggregate policies and distributions to compute private sector assets and savings
+    \State Back out $K_c$ from asset market clearing condition
+    \State Compute labor market error using aggregates
+    \If{error $>$ tolerance}
+        \State Update $r$ based on error
+    \Else
+        \State Converged on $r$
+    \EndIf
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+\end{document}
